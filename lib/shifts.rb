@@ -1,6 +1,5 @@
 class Shifts
-
-
-  def keys
+  def keys(key)
+    
   end
 end
