@@ -1,19 +1,15 @@
 require "rspec"
 require "./lib/enigma"
 
-RSpec.describe Enigma do 
+RSpec.describe Enigma do
 	describe "Iteration 1" do
 		before :each do
-			@
-			@
+			@enigma = Enigma.new
+      # @
 		end
 
 		it "exists" do
-			expect(@enigma).to be_a(Class)
+			expect(@enigma).to be_a(Enigma)
 		end
-
-		it "has attributes" do
-			expect(@enigma.attribute).to eq()
-    end
 	end
 end
