@@ -25,4 +25,8 @@ class Generator
     offsets_hash[:D] = (last_4_string[3].to_i)
     return offsets_hash
   end
+
+  def final_shifts(keys, offsets)
+    require "pry"; binding.pry
+  end
 end
