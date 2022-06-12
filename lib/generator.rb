@@ -2,7 +2,7 @@ class Generator
   def random_key
     number = "0" + 4.times.map{rand(10)}.join
   end
-
+# => these should be in an encryptor class, not generator
   def keys(key)
     keys_hash = {}
     #use index to enumerate instead of hard code? letters?

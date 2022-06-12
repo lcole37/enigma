@@ -1,4 +1,7 @@
 require 'date'
+require_relative 'generator'
+# require_relative 'encryptor'
+
 class Enigma
   def initialize
      @date_string = Date.today.strftime("%d%m%y")
