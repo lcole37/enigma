@@ -1,5 +1,5 @@
 require "rspec"
-require "./lib/class"
+require "./lib/key_generator.rb"
 
 RSpec.describe KeyGenerator do
 	before :each do
