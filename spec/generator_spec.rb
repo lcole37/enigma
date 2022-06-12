@@ -4,7 +4,7 @@ require "./lib/generator.rb"
 RSpec.describe Generator do
 	before :each do
 		@generator = Generator.new
-    @key = 02715
+    @key = "02715"
     @date = "040895"
 	end
 
@@ -18,15 +18,15 @@ RSpec.describe Generator do
     expect(@generator.random_key[0]).to eq("0")
   end
 
-  xit "can generate A-D keys from the key" do
-		expect(@shifts.keys(@key)).to eq({A: 02, B: 27, C: 71, D: 15})
+  it "can generate A-D keys from the key" do
+		expect(@generator.keys(@key)).to eq({A: 02, B: 27, C: 71, D: 15})
 	end
 
   xit "can create date offsets" do
-    expect(@shifts.offsets(@date)).to eq({A: 1, B: 0, C: 2, D: 5})
+    expect(@generator.offsets(@date)).to eq({A: 1, B: 0, C: 2, D: 5})
   end
 
   xit 'can create shifts from keys/offsets' do
-    expect(@shifts.final_shifts).to eq({A: 3, B: 27, C: 71, D: 15})
+    expect(@generator.final_shifts).to eq({A: 3, B: 27, C: 71, D: 15})
   end
 end
