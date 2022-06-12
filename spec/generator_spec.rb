@@ -30,6 +30,6 @@ RSpec.describe Generator do
     keys = @generator.keys(@key)
     offsets = @generator.offsets(@date)
 
-    expect(@generator.final_shifts(keys, offsets)).to eq({A: 3, B: 27, C: 71, D: 15})
+    expect(@generator.final_shifts(keys, offsets)).to eq({A: 3, B: 27, C: 73, D: 20})
   end
 end
