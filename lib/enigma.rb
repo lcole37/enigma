@@ -27,7 +27,7 @@ class Enigma
     end
   end
 
-  def decrypt()
+  def decrypt(message, key, date = date_string)
 
   end
 end
