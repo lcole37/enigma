@@ -27,6 +27,6 @@ class Generator
   end
 
   def final_shifts(keys, offsets)
-    require "pry"; binding.pry
+    keys.merge(offsets){ |k, key, offset| key + offset }
   end
 end
