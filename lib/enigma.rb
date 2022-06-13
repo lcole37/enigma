@@ -1,6 +1,6 @@
 require 'date'
 require_relative 'generator'
-# require_relative 'encryptor'
+# require_relative 'encryption'
 
 class Enigma
   def initialize
@@ -9,12 +9,14 @@ class Enigma
      @generator = Generator.new
   end
 
-  def encrypt(message, key, date)
+  def encrypt(message, key = @generator.random_key, date = @date_string)
+    require "pry"; binding.pry
+    ### things look good up to here ###
     encryption_array = []
     message_array = message.split("")
-    keys = generator.keys(key)
-    offsets = generator.offsets(date)
-    shifts = generator.shifts(keys, offsets)
+    keys = @generator.keys(key)
+    offsets = @generator.offsets(date)
+    shifts = @generator.shifts(keys, offsets)
 
     shifts.values.each do |shift|
       # split into 4 arrays, or x arrays of 4 a-d
@@ -23,5 +25,9 @@ class Enigma
       #   ecryption_array << ____ + shift
       # end
     end
+  end
+
+  def decrypt(message, key, date = date_string)
+
   end
 end
