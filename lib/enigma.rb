@@ -7,28 +7,48 @@ class Enigma
   def initialize
      @date_string = Date.today.strftime("%d%m%y")
      @alphabet = ("a".."z").to_a << " "
-     @generator = KeyGenerator.new
+     @keygenerator = KeyGenerator.new
   end
 
-  def encrypt(message, key = @generator.random_key, date = @date_string)
-    require "pry"; binding.pry
+  def encrypt(message, key = @keygenerator.random_key, date = @date_string)
     ### things look good up to here ###
     encryption_array = []
-    message_array = message.split("")
-    keys = @generator.keys(key)
-    offsets = @generator.offsets(date)
-    shifts = @generator.shifts(keys, offsets)
+    message_array = message.downcase.chars
+    generator = Generator.new(message, key, date)
+    shifts_array = generator.final_shifts.map{|shift| shift[1]}
 
-    shifts.values.each do |shift|
-      # split into 4 arrays, or x arrays of 4 a-d
-      # enumerate over those, shifting by corresponding a-d
-      # message_array.each_with_index(0) do |letter|
-      #   ecryption_array << ____ + shift
-      # end
+    message_array.each_with_index do |letter, index|
+      if @alphabet.index(letter).nil?
+        letter
+      else
+        pre_shift_index = @alphabet.index(letter)
+        post_shift_alphabet = @alphabet.rotate(shifts_array[index % 4])
+        post_shift_letter = post_shift_alphabet[pre_shift_index]
+        encryption_array << post_shift_letter
+      end
     end
+    encrypted_message = encryption_array.join
+    encypted_hash = {encryption: encrypted_message, key: key, date: date}
   end
 
-  def decrypt(message, key, date = date_string)
+  def decrypt(message, key = @keygenerator.random_key, date = @date_string)
+    decryption_array = []
+    message_array = message.downcase.chars
+    generator = Generator.new(message, key, date)
+    shifts_array = generator.final_shifts.map{|shift| shift[1]}
+
+    message_array.each_with_index do |letter, index|
+      if @alphabet.index(letter).nil?
+        letter
+      else
+        pre_shift_alphabet = @alphabet.rotate(shifts_array[index % 4])
+        pre_shift_index = pre_shift_alphabet.index(letter)
+        post_shift_letter = @alphabet[pre_shift_index]
+        decryption_array << post_shift_letter
+      end
+    end
+    decrypted_message = decryption_array.join
+    decrypted_hash = {decryption: decrypted_message, key: key, date: date}
 
   end
 end
