@@ -19,7 +19,7 @@ class Enigma
 
     message_array.each_with_index do |letter, index|
       if @alphabet.index(letter).nil?
-        letter
+        encryption_array << letter
       else
         pre_shift_index = @alphabet.index(letter)
         post_shift_alphabet = @alphabet.rotate(shifts_array[index % 4])
