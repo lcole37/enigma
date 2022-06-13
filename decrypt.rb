@@ -10,9 +10,9 @@ require './lib/enigma'
 #file1.close
 #file2.write
 # => enigma = Enigma.new
-# => encryption = enigma.decrypt(message, key)
+# => decryption = enigma.decrypt(message, key)
 # write message
 #file2.close
 
 
-puts "Created #{created_file} with the key #{encryption[:key]} and date #{encryption[:date]}"
+puts "Created #{created_file} with the key #{decryption[:key]} and date #{decryption[:date]}"
