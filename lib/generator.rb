@@ -6,14 +6,13 @@ class Generator
     @date_string = date
     @keys_hash = {}
     @offsets_hash = {}
+    @symbols_array = [:A, :B, :C, :D]
   end
+
 
   def keys
     key_array = @key_string.split("")
-    @keys_hash[:A] = (@key_string[0] + @key_string[1]).to_i
-    @keys_hash[:B] = (@key_string[1] + @key_string[2]).to_i
-    @keys_hash[:C] = (@key_string[2] + @key_string[3]).to_i
-    @keys_hash[:D] = (@key_string[3] + @key_string[4]).to_i
+    @symbols_array.each_with_index {|symbol, index| @keys_hash[symbol] = (@key_string[index] + @key_string[index + 1]).to_i}
     return @keys_hash
   end
 
@@ -34,22 +33,13 @@ class Generator
   end
 end
 
-
-
-
-
 #================= ALTERNATIVE SOLUTIONS ====================
 
-
-# def keys(key) using enumerable. longer lines
-#   key_array = key.split("")
-#   keys_array = []
-#   index = 0
-#   key_array.each do |number|
-#     # require "pry"; binding.pry
-#     keys_array << (number + key_array[index + 1])
-#     index += 1
-#     break if keys_array.length == 4
-#   end
-#   return keys_array
+# def keys
+#   key_array = @key_string.split("")
+#   @keys_hash[:A] = (@key_string[0] + @key_string[1]).to_i
+#   @keys_hash[:B] = (@key_string[1] + @key_string[2]).to_i
+#   @keys_hash[:C] = (@key_string[2] + @key_string[3]).to_i
+#   @keys_hash[:D] = (@key_string[3] + @key_string[4]).to_i
+#   return @keys_hash
 # end
