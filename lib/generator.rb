@@ -18,11 +18,9 @@ class Generator
   def offsets
     date_squared = @date_string.to_i ** 2
     last_4_string = date_squared.to_s[-4..-1]
-    index = 0
     @symbols_array.each_with_index {|symbol, index| @offsets_hash[symbol] = (last_4_string[index]).to_i}
     return @offsets_hash
   end
-
 
   def final_shifts
     keys
