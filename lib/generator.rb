@@ -7,10 +7,7 @@ class Generator
     @keys_hash = {}
     @offsets_hash = {}
   end
-  def random_key
-    number = "0" + 4.times.map{rand(10)}.join
-  end
-# => these should be in an encryptor class, not generator
+
   def keys
     key_array = @key_string.split("")
     @keys_hash[:A] = (@key_string[0] + @key_string[1]).to_i
@@ -19,19 +16,6 @@ class Generator
     @keys_hash[:D] = (@key_string[3] + @key_string[4]).to_i
     return @keys_hash
   end
-
-  # def keys(key) using enumerable. longer lines
-  #   key_array = key.split("")
-  #   keys_array = []
-  #   index = 0
-  #   key_array.each do |number|
-  #     # require "pry"; binding.pry
-  #     keys_array << (number + key_array[index + 1])
-  #     index += 1
-  #     break if keys_array.length == 4
-  #   end
-  #   return keys_array
-  # end
 
   def offsets
     date_squared = @date_string.to_i ** 2
@@ -49,3 +33,23 @@ class Generator
     @keys_hash.merge(@offsets_hash){ |k, key, offset| key + offset }
   end
 end
+
+
+
+
+
+#================= ALTERNATIVE SOLUTIONS ====================
+
+
+# def keys(key) using enumerable. longer lines
+#   key_array = key.split("")
+#   keys_array = []
+#   index = 0
+#   key_array.each do |number|
+#     # require "pry"; binding.pry
+#     keys_array << (number + key_array[index + 1])
+#     index += 1
+#     break if keys_array.length == 4
+#   end
+#   return keys_array
+# end
