@@ -1,7 +1,6 @@
 require 'date'
 require_relative 'generator'
 require_relative 'key_generator'
-# require_relative 'encryption'
 
 class Enigma
   def initialize
@@ -11,12 +10,10 @@ class Enigma
   end
 
   def encrypt(message, key = @keygenerator.random_key, date = @date_string)
-    ### things look good up to here ###
     encryption_array = []
     message_array = message.downcase.chars
     generator = Generator.new(message, key, date)
     shifts_array = generator.final_shifts.map{|shift| shift[1]}
-
     message_array.each_with_index do |letter, index|
       if @alphabet.index(letter).nil?
         encryption_array << letter
@@ -36,7 +33,6 @@ class Enigma
     message_array = message.downcase.chars
     generator = Generator.new(message, key, date)
     shifts_array = generator.final_shifts.map{|shift| shift[1]}
-
     message_array.each_with_index do |letter, index|
       if @alphabet.index(letter).nil?
         decryption_array << letter
@@ -49,6 +45,5 @@ class Enigma
     end
     decrypted_message = decryption_array.join
     decrypted_hash = {decryption: decrypted_message, key: key, date: date}
-
   end
 end
