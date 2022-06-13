@@ -1,12 +1,13 @@
 require 'date'
 require_relative 'generator'
+require_relative 'key_generator'
 # require_relative 'encryption'
 
 class Enigma
   def initialize
      @date_string = Date.today.strftime("%d%m%y")
      @alphabet = ("a".."z").to_a << " "
-     @generator = Generator.new
+     @generator = KeyGenerator.new
   end
 
   def encrypt(message, key = @generator.random_key, date = @date_string)
