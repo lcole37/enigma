@@ -13,11 +13,11 @@ RSpec.describe Generator do
 	end
 
   it "can generate A-D keys from the key" do
-		expect(@generator.keys).to eq({A: 02, B: 27, C: 71, D: 15})
+		expect(@generator.generate_keys).to eq({A: 02, B: 27, C: 71, D: 15})
 	end
 
   it "can generate date offsets" do
-    expect(@generator.offsets).to eq({A: 1, B: 0, C: 2, D: 5})
+    expect(@generator.generate_offsets).to eq({A: 1, B: 0, C: 2, D: 5})
   end
 
   it 'can generate shifts from keys/offsets' do
