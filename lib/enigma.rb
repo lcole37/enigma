@@ -10,21 +10,21 @@ class Enigma
   end
 
   def encrypt(message, key = @keygenerator.random_key, date = @date_string)
-    encryption_array = []
+    encryption_chars = []
     message_array = message.downcase.chars
     generator = Generator.new(message, key, date)
     shifts_array = generator.final_shifts.map{|shift| shift[1]}
     message_array.each_with_index do |letter, index|
       if @alphabet.index(letter).nil?
-        encryption_array << letter
+        encryption_chars << letter
       else
         pre_shift_index = @alphabet.index(letter)
         post_shift_alphabet = @alphabet.rotate(shifts_array[index % 4])
         post_shift_letter = post_shift_alphabet[pre_shift_index]
-        encryption_array << post_shift_letter
+        encryption_chars << post_shift_letter
       end
     end
-    encrypted_message = encryption_array.join
+    encrypted_message = encryption_chars.join
     encypted_hash = {encryption: encrypted_message, key: key, date: date}
   end
 
