@@ -10,16 +10,17 @@ class Enigma
   end
 
   def encrypt(message, key = @keygenerator.random_key, date = @date_string)
+    alphabet = @alphabet
     encryption_chars = []
     message_array = message.downcase.chars
     generator = Generator.new(message, key, date)
     shifts_array = generator.final_shifts.map{|shift| shift[1]}
     message_array.each_with_index do |letter, index|
-      if @alphabet.index(letter).nil?
+      if alphabet.index(letter).nil?
         encryption_chars << letter
       else
-        pre_shift_index = @alphabet.index(letter)
-        post_shift_alphabet = @alphabet.rotate(shifts_array[index % 4])
+        pre_shift_index = alphabet.index(letter)
+        post_shift_alphabet = alphabet.rotate(shifts_array[index % 4])
         post_shift_letter = post_shift_alphabet[pre_shift_index]
         encryption_chars << post_shift_letter
       end
@@ -29,17 +30,18 @@ class Enigma
   end
 
   def decrypt(message, key = @keygenerator.random_key, date = @date_string)
+    alphabet = @alphabet
     decryption_chars = []
     message_array = message.downcase.chars
     generator = Generator.new(message, key, date)
     shifts_array = generator.final_shifts.map{|shift| shift[1]}
     message_array.each_with_index do |letter, index|
-      if @alphabet.index(letter).nil?
+      if alphabet.index(letter).nil?
         decryption_chars << letter
       else
-        pre_shift_alphabet = @alphabet.rotate(shifts_array[index % 4])
+        pre_shift_alphabet = alphabet.rotate(shifts_array[index % 4])
         pre_shift_index = pre_shift_alphabet.index(letter)
-        post_shift_letter = @alphabet[pre_shift_index]
+        post_shift_letter = alphabet[pre_shift_index]
         decryption_chars << post_shift_letter
       end
     end
