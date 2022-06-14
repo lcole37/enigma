@@ -1,5 +1,9 @@
 require './lib/enigma'
 
+# Another thing to think about here is graceful error handling
+# What happens if a user doesn't input the arguments as expected?
+# Or they leave one out entirely?
+
 enigma = Enigma.new
 file1 = File.open(ARGV[0], "r")
 message = file1.read

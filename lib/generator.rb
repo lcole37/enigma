@@ -4,10 +4,17 @@ class Generator
     @name = name
     @key_string = key
     @date_string = date
+    # It's also okay to generate keys and shifts during initialization
+    # @keys = generate_keys(key) -> see below
     @keys_hash = {}
     @offsets_hash = {}
     @symbols_array = [:A, :B, :C, :D]
   end
+
+  # I'd suggest renaming this to generate_keys for readability
+  # def generate_keys(key_string)
+  #   ...
+  # end
 
   def keys
     key_array = @key_string.split("")
@@ -23,6 +30,7 @@ class Generator
   end
 
   def final_shifts
+    # Based on these function names alone, I would think they act as reader functions instead of updating instance variables
     keys
     offsets
     @keys_hash.merge(@offsets_hash){ |k, key, offset| key + offset }
