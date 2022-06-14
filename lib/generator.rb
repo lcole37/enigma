@@ -9,13 +9,13 @@ class Generator
     @symbols_array = [:A, :B, :C, :D]
   end
 
-  def keys
+  def generate_keys
     key_array = @key_string.split("")
     @symbols_array.each_with_index {|symbol, index| @keys_hash[symbol] = (@key_string[index] + @key_string[index + 1]).to_i}
     return @keys_hash
   end
 
-  def offsets
+  def generate_offsets
     date_squared = @date_string.to_i ** 2
     last_4_string = date_squared.to_s[-4..-1]
     @symbols_array.each_with_index {|symbol, index| @offsets_hash[symbol] = (last_4_string[index]).to_i}
@@ -23,8 +23,8 @@ class Generator
   end
 
   def final_shifts
-    keys
-    offsets
+    generate_keys
+    generate_offsets
     @keys_hash.merge(@offsets_hash){ |k, key, offset| key + offset }
   end
 end
