@@ -12,7 +12,7 @@ RSpec.describe Enigma do
 		end
 
 		it "can encrypt a message with a key and date" do
-			expect(@enigma.encrypt("hello world", "02715", "040895")).to eq({encryption: "keder ohulw", key: "02715", date: "040895"})
+			expect(@enigma.encrypt("hello world!", "02715", "040895")).to eq({encryption: "keder ohulw!", key: "02715", date: "040895"})
 		end
 
 		it "can decrypt a message with a key and date" do
